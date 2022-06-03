@@ -4,25 +4,25 @@ var tasks = {};
 
 //set current day 
 var today =
-    moment().format("dddd MMMM Do YYYY HH:mm a");
+    moment().format("dddd MMMM Do YYYY hh:mm a");
 
 $("#currentDay").append(today);
 
-var hours = moment().format("HH:00");
+var hours = moment().format("HH");
 console.log(hours);
 
 
 
 //checking time of day for block
 var now = function () {
-    if ($("#dayHour") < hours) {
-        document.getElementById("textArea").setAttribute("past")
+    if (3 < hours) {
+        document.getElementById("textArea").setAttribute("col-md-9", ".past")
 
 
     }
-    else ($("#dayHour") > today); {
-        $("#textArea").css(".future")
-    }
+    //     else ($("#dayHour") > hours); {
+    //         document.getElementById("textArea").setAttribute(".future")
+    //     }
 };
 
 //creating tasks 
@@ -48,34 +48,19 @@ function getInputValue() {
 
 //save tasks
 //button not an EL
-buttonSave.addEventListener("click", function () {
+// buttonSave.addEventListener("click", function () {
 
-    var tasks = inputVal.concat(tasks);
-    localStorage.setItem("textArea", JSON.stringify(tasks));
-});
+//     var tasks = inputVal.concat(tasks);
+//     localStorage.setItem("textArea", JSON.stringify(tasks));
+// });
 
-var loadTask = function () {
-    tasks = JSON.parse(localStorage.getItem("tasks"));
-};
+// var loadTask = function () {
+//     tasks = JSON.parse(localStorage.getItem("tasks"));
+// };
 
-saveTasks();
+// saveTasks();
 
 now();
-
-
-
-
-
-
-
-
-
-
-
-
-// dayHour()
-
-
 
 
 
