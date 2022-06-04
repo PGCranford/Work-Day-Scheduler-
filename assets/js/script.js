@@ -2,15 +2,7 @@
 var today =
     moment().format("dddd MMMM Do YYYY hh:mm a");
 
-function update() {
-    console.log(today.add(1, "s").format("hh:mm:ss a"));
-};
-setInterval(function () {
-    update();
-}, 1000);
-
 $("#currentDay").append(today);
-
 
 var currentHour = moment().hour();
 console.log(currentHour);
