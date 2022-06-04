@@ -1,9 +1,4 @@
-//var buttonSave = document.getElementById("saveBtn");
 
-
-var loadTask = function () {
-    input = JSON.parse(localStorage.getItem("tasks"));
-};
 
 //set current day 
 var today =
@@ -11,59 +6,69 @@ var today =
 
 $("#currentDay").append(today);
 
-var hours = moment().format("HH");
-console.log(hours);
+var currentHour = moment().hour();
+console.log(currentHour);
 
 
 
 //checking time of day for block
-var now = function () {
-    if (3 < hours) {
-        document.getElementById("textArea").setAttribute("col-md-9", "past")
+var getHourClass = function (hour) {
 
 
+    if (hour < currentHour) {
+        return "past"
     }
-    //     else ($("#dayHour") > hours); {
-    //         document.getElementById("textArea").setAttribute(".future")
-    //     }
-};
-
-//creating tasks 
-var addTask = function (event) {
-    event.preventDefault();
-    var input = $("#textArea")
-        .text(tasks)
-
-
-
-    //input.append(taskText);
-
-    $("#textArea" + tasks).append(input);
-};
-
-//getting user input
-
-function getInputValue() {
-    var inputVal = document.getElementById("textArea").value;
-
-    alert(inputVal);
+    else if (hour > currentHour) {
+        return "future"
+    }
+    else {
+        return "present"
+    }
 
 };
+
+var setUpHourBlock = function (hourBlock) {
+    //console.log(hourBlock)
+
+    var hourId = Number.parseInt(hourBlock.id, 10)
+    console.log(hourId)
+
+    var saveButton = hourBlock.querySelector(".saveBtn")
+    console.log(saveButton)
+
+    var textInputArea = hourBlock.querySelector("input")
+    var hourClass = getHourClass(hourId)
+    textInputArea.classList.add(hourClass)
+
+    var saveTasks = localStorage.getItem(hourId)
+    console.log(saveTasks)
+    textInputArea.value = saveTasks
+
+    saveButton.addEventListener("click", function () {
+        let taskInput = textInputArea.value;
+        console.log(taskInput)
+        localStorage.setItem(hourId, (taskInput));
+
+    })
+}
+
+
+
+document.querySelectorAll("#hourRows>.row").forEach(setUpHourBlock)
+
+
 
 //save tasks
-function saveText() {
-    let input = document.getElementById("textArea").value;
-    alert(input)
-
-    if (input === true)
-        localStorage.setItem("textArea", JSON.stringify(input));
 
 
-};
+
+
+
+//saveText();
 
 loadTask();
 
-now();
+
 
 
 
