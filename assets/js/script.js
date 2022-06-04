@@ -2,14 +2,21 @@
 var today =
     moment().format("dddd MMMM Do YYYY hh:mm a");
 
+function update() {
+    console.log(today.add(1, "s").format("hh:mm:ss a"));
+};
+setInterval(function () {
+    update();
+}, 1000);
+
 $("#currentDay").append(today);
+
 
 var currentHour = moment().hour();
 console.log(currentHour);
 
 //checking time of day for block
 var getHourClass = function (hour) {
-
 
     if (hour < currentHour) {
         return "past"
@@ -20,7 +27,6 @@ var getHourClass = function (hour) {
     else {
         return "present"
     }
-
 };
 
 var setUpHourBlock = function (hourBlock) {
@@ -50,7 +56,7 @@ var setUpHourBlock = function (hourBlock) {
 
 document.querySelectorAll("#hourRows>.row").forEach(setUpHourBlock)
 
-loadTask();
+
 
 
 
