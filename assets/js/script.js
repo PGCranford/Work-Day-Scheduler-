@@ -1,6 +1,9 @@
-var buttonSave = document.getElementById("saveBtn");
-var tasks = {};
+//var buttonSave = document.getElementById("saveBtn");
 
+
+var loadTask = function () {
+    input = JSON.parse(localStorage.getItem("tasks"));
+};
 
 //set current day 
 var today =
@@ -16,7 +19,7 @@ console.log(hours);
 //checking time of day for block
 var now = function () {
     if (3 < hours) {
-        document.getElementById("textArea").setAttribute("col-md-9", ".past")
+        document.getElementById("textArea").setAttribute("col-md-9", "past")
 
 
     }
@@ -26,7 +29,8 @@ var now = function () {
 };
 
 //creating tasks 
-var addTask = function (tasks) {
+var addTask = function (event) {
+    event.preventDefault();
     var input = $("#textArea")
         .text(tasks)
 
@@ -47,18 +51,17 @@ function getInputValue() {
 };
 
 //save tasks
-//button not an EL
-// buttonSave.addEventListener("click", function () {
+function saveText() {
+    let input = document.getElementById("textArea").value;
+    alert(input)
 
-//     var tasks = inputVal.concat(tasks);
-//     localStorage.setItem("textArea", JSON.stringify(tasks));
-// });
+    if (input === true)
+        localStorage.setItem("textArea", JSON.stringify(input));
 
-// var loadTask = function () {
-//     tasks = JSON.parse(localStorage.getItem("tasks"));
-// };
 
-// saveTasks();
+};
+
+loadTask();
 
 now();
 
