@@ -1,5 +1,3 @@
-
-
 //set current day 
 var today =
     moment().format("dddd MMMM Do YYYY hh:mm a");
@@ -8,8 +6,6 @@ $("#currentDay").append(today);
 
 var currentHour = moment().hour();
 console.log(currentHour);
-
-
 
 //checking time of day for block
 var getHourClass = function (hour) {
@@ -52,19 +48,7 @@ var setUpHourBlock = function (hourBlock) {
     })
 }
 
-
-
 document.querySelectorAll("#hourRows>.row").forEach(setUpHourBlock)
-
-
-
-//save tasks
-
-
-
-
-
-//saveText();
 
 loadTask();
 
